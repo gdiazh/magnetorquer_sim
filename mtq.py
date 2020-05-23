@@ -50,6 +50,7 @@ if __name__ == '__main__':
     import time
     from step import Step
     from pwm import PWM
+    from current_sensor import CurrentSensor
 
     # MTQ Model
     R = 145.9 		#[Ohm]
@@ -79,12 +80,17 @@ if __name__ == '__main__':
     i_data = np.zeros(N)
     m_data = np.zeros(N)
 
+    # Sensors
+    i_std = 22e-5		#[A]
+    i_bias = 22e-6		#[A]
+    current_sensor = CurrentSensor(i_bias, i_std)
+
     for i in range(0, N):
         # Process data
         mtq.main_routine(voltage[i], dt)
         
         # Data of interest
-        i_data[i] = mtq.i
+        i_data[i] = current_sensor.measure(mtq.i)
         m_data[i] = mtq.m
 
     # Data Visualization
