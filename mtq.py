@@ -51,11 +51,13 @@ if __name__ == '__main__':
     from step import Step
     from pwm import PWM
     from current_sensor import CurrentSensor
+    from magnetometer import Magnetometer
 
     # MTQ Model
     R = 145.9 		#[Ohm]
     L = 10.08e-3	#[H]
     A = 46.82e-4	#[m2]
+    l = np.sqrt(A)	#[m]
     N_coil = 25*10	#[number of turns]
     tau = L/R    	#[s]
     mtq = MTQ(R, L, A, N_coil)
@@ -79,11 +81,19 @@ if __name__ == '__main__':
     # MTQ Data Storage
     i_data = np.zeros(N)
     m_data = np.zeros(N)
+    B_data = np.zeros(N)
+    m_calc = np.zeros(N)
 
     # Sensors
+    # Electric current
     i_std = 22e-5		#[A]
     i_bias = 22e-6		#[A]
     current_sensor = CurrentSensor(i_bias, i_std)
+    # Magnetometer
+    B_std = 1			#[uT]
+    B_bias = 1e-1		#[uT]
+    magnetometer = Magnetometer(B_bias, B_std)
+    z0 = 16e-3			#[m]
 
     for i in range(0, N):
         # Process data
@@ -92,6 +102,8 @@ if __name__ == '__main__':
         # Data of interest
         i_data[i] = current_sensor.measure(mtq.i)
         m_data[i] = mtq.m
+        B_data[i] = magnetometer.measure(z0, mtq.i, l, N_coil)
+        m_calc[i] = (5)*B_data[i]*z0**3
 
     # Data Visualization
     from monitor import Monitor
@@ -101,6 +113,12 @@ if __name__ == '__main__':
 
     i_mon = Monitor([t], [i_data], "MTQ electric current", "i[A]", "time[s]", sig_name = ["i"])
     i_mon.plot()
+
+    B_mon = Monitor([t], [B_data], "MTQ magnetic field", "B[uT]", "time[s]", sig_name = ["B"])
+    B_mon.plot()
+
+    mCalc_mon = Monitor([t], [m_calc], "MTQ calculate magnetic moment", "m[Am2]", "time[s]", sig_name = ["m"])
+    mCalc_mon.plot()
 
     m_mon = Monitor([t], [m_data], "MTQ magnetic moment", "m[Am2]", "time[s]", sig_name = ["m"])
     m_mon.plot()
