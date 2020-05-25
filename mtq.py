@@ -43,6 +43,10 @@ class MTQ(object):
         self.i = i_next
         self.m = self.N * self.i * self.A
 
+    def reset(self):
+    	self.i = 0
+    	self.m = 0
+
 if __name__ == '__main__':
     # TEST
     import numpy as np
@@ -117,7 +121,7 @@ if __name__ == '__main__':
     B_mon = Monitor([t], [B_data], "MTQ magnetic field", "B[uT]", "time[s]", sig_name = ["B"])
     B_mon.plot()
 
-    mCalc_mon = Monitor([t], [m_calc], "MTQ calculate magnetic moment", "m[Am2]", "time[s]", sig_name = ["m"])
+    mCalc_mon = Monitor([t], [m_calc], "MTQ calculated magnetic moment", "m[Am2]", "time[s]", sig_name = ["m"])
     mCalc_mon.plot()
 
     m_mon = Monitor([t], [m_data], "MTQ magnetic moment", "m[Am2]", "time[s]", sig_name = ["m"])
