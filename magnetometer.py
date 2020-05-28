@@ -22,6 +22,6 @@ class Magnetometer(object):
         return measurement
 
     def calc(self, z, I, S, N):
-        u0 = 4*np.pi*10e-7      #[H/m]
+        u0 = 4*np.pi*1e-7      #[H/m]
         Bz = (u0*I*N*S**2)/(2*np.pi*(z**2+(0.5*S)**2)*np.sqrt(z**2+0.5*(S)**2))
         return Bz*1e6   #[uT]

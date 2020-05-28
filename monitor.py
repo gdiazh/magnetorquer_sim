@@ -40,6 +40,20 @@ class Monitor(object):
                 plt.legend(handles=legend_handler)
         plt.grid(which='both', axis='both')
 
+    def errorbar(self):
+        plt.figure()
+        plt.title(self.title)
+        plt.ylabel(self.ylabel)
+        plt.xlabel(self.xlabel)
+        legend_handler = []
+        if self.scale != None:
+            plt.yscale(self.scale)
+            plt.xscale(self.scale)
+        a = plt.errorbar(self.x[0], self.y[0], self.y[1], fmt = self.marker, ecolor = 'black', capsize=4.0, label=self.sig_name)
+        legend_handler.append(a)
+        plt.legend(handles=legend_handler)
+        plt.grid(which='both', axis='both')
+
     def show(self):
         plt.show()
 

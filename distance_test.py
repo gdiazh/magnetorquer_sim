@@ -48,7 +48,7 @@ B_bias = 1e-1		#[uT]
 magnetometer = Magnetometer(B_bias, B_std)
 z0 = 16			   #[mm]
 dz = 1             #[mm]
-zf = 19            #[mm]
+zf = 35            #[mm]
 Nz = int((zf-z0+1)/dz) #[number of points]
 z = np.linspace(z0, zf, Nz)*1e-3 #[m]
 
@@ -73,25 +73,25 @@ for j in range(0, Nz):
     mtq.reset()
 
 # Save data to csv
-# from pathlib import Path
-# import datetime
-# folder = "data/osc/"
-# Path(folder).mkdir(parents=True, exist_ok=True)
-# data = {"time[s]": t, "voltage[V]": voltage, "current[A]": i_data[0]}
-# df = pd.DataFrame(data, columns=["time[s]", "voltage[V]", "current[A]"])
-# test_name = "-test_distances[voltage-current]"
-# date = datetime.datetime.now().strftime('%Y-%m-%d %H-%M-%S')
-# path = Path(folder+date+test_name+".csv")
-# df.to_csv(path)
+from pathlib import Path
+import datetime
+folder = "data/osc/"
+Path(folder).mkdir(parents=True, exist_ok=True)
+data = {"time[s]": t, "voltage[V]": voltage, "current[A]": i_data[0]}
+df = pd.DataFrame(data, columns=["time[s]", "voltage[V]", "current[A]"])
+test_name = "-test_distances[voltage-current]"
+date = datetime.datetime.now().strftime('%Y-%m-%d %H-%M-%S')
+path = Path(folder+date+test_name+".csv")
+df.to_csv(path)
 
-# folder = "data/magnetometer/"+date+"/"
-# Path(folder).mkdir(parents=True, exist_ok=True)
-# for j in range(0, Nz):
-#     data = {"time[s]": t, "magField[uT]": B_data[j]}
-#     df = pd.DataFrame(data, columns=["time[s]", "magField[uT]"])
-#     test_name = "-test_distances[magField]["+str(int(z[j]*1e3))+"mm]"
-#     path = Path(folder+test_name+".csv")
-#     df.to_csv(path)
+folder = "data/magnetometer/"+date+"/"
+Path(folder).mkdir(parents=True, exist_ok=True)
+for j in range(0, Nz):
+    data = {"time[s]": t, "magField_z[uT]": B_data[j]}
+    df = pd.DataFrame(data, columns=["time[s]", "magField_z[uT]"])
+    test_name = "-test_distances[magField]["+str(int(z[j]*1e3))+"mm]"
+    path = Path(folder+test_name+".csv")
+    df.to_csv(path)
 
 # Data Visualization
 from monitor import Monitor
