@@ -38,7 +38,7 @@ V = 3.3 			#[V]
 freq = 100          #[Hz]
 d0 = 0              #[%]
 dd = 10             #[%]
-df = 90             #[%]
+df = 100            #[%]
 Nd = int((df-d0)/dd+1) #[number of points]
 duty = np.linspace(d0, df, Nd) #[%]
 voltage = np.zeros((Nd, N))
@@ -107,23 +107,23 @@ for j in range(0, Nd):
 # Save data to csv
 from pathlib import Path
 import datetime
-folder = "data/osc/"
-Path(folder).mkdir(parents=True, exist_ok=True)
-data = {"time[s]": t, "voltage[V]": voltage[0], "current[A]": i_data[0]}
-df = pd.DataFrame(data, columns=["time[s]", "voltage[V]", "current[A]"])
-test_name = "-test_pwm[voltage-current]"
-date = datetime.datetime.now().strftime('%Y-%m-%d %H-%M-%S')
-path = Path(folder+date+test_name+".csv")
-df.to_csv(path)
+# folder = "data/osc/"
+# Path(folder).mkdir(parents=True, exist_ok=True)
+# data = {"time[s]": t, "voltage[V]": voltage[0], "current[A]": i_data[0]}
+# df = pd.DataFrame(data, columns=["time[s]", "voltage[V]", "current[A]"])
+# test_name = "-test_pwm[voltage-current]"
+# date = datetime.datetime.now().strftime('%Y-%m-%d %H-%M-%S')
+# path = Path(folder+date+test_name+".csv")
+# df.to_csv(path)
 
-folder = "data/magnetometer/"+date+"/"
-Path(folder).mkdir(parents=True, exist_ok=True)
-for j in range(0, Nd):
-    data = {"time[s]": t, "magField[uT]": B_data[j]}
-    df = pd.DataFrame(data, columns=["time[s]", "magField[uT]"])
-    test_name = "-test_pwm[magField]["+str(int(duty[j]))+"%]"
-    path = Path(folder+test_name+".csv")
-    df.to_csv(path)
+# folder = "data/magnetometer/"+date+"/"
+# Path(folder).mkdir(parents=True, exist_ok=True)
+# for j in range(0, Nd):
+#     data = {"time[s]": t, "magField[uT]": B_data[j]}
+#     df = pd.DataFrame(data, columns=["time[s]", "magField[uT]"])
+#     test_name = "-test_pwm[magField]["+str(int(duty[j]))+"%]"
+#     path = Path(folder+test_name+".csv")
+#     df.to_csv(path)
 
 # Data Visualization
 from monitor import Monitor

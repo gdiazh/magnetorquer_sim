@@ -25,6 +25,13 @@ for i in range(0, Nz):
 	file = Path(path+test_date+"-test_distances[magField]["+str(int(z[i]*1e3))+"mm].csv")
 	data.append(pandas.read_csv(file))
 
+# correction sign
+d0 = data[0]["magField_z[uT]"].values
+if max(d0)>abs(min(d0)):
+	correction_sign = 1
+else:
+	correction_sign = -1
+
 # process data
 def find_step(t, step_response):
 	n = len(step_response)
@@ -85,7 +92,7 @@ magM_calc_mean = []
 magM_calc_std = []
 for i in range(0, Nz):
 	time.append(1e-3*data[i]['time[s]'].values)
-	magF.append(data[i]["magField_z[uT]"].values)
+	magF.append(correction_sign*data[i]["magField_z[uT]"].values)
 	[m_offset, m_steady, t_steady] = find_step(time[i], magF[i])
 	magF_rel.append(m_steady-np.mean(m_offset))
 	t_magF_rel.append(t_steady)
@@ -99,6 +106,13 @@ magF_mean = np.array(magF_mean)
 magF_std = np.array(magF_std)
 magM_calc_mean = np.array(magM_calc_mean)
 magM_calc_std = np.array(magM_calc_std)
+
+magM_calc_mean2 = (5)*np.multiply(magF_mean,np.multiply(z**2+(0.5*l)**2,np.sqrt(z**2+0.5*l**2)))
+magM_calc_var2 = (5**2)*np.dot(magF_std**2,np.multiply(z**2+(0.5*l)**2,np.sqrt(z**2+0.5*l**2))**2)
+magM_calc_std2 = np.sqrt(magM_calc_var2)
+print("magF_mean: ", magF_mean)
+print("magM_calc_mean: ", magM_calc_mean)
+print("magM_calc_mean2: ", magM_calc_mean2)
 
 magF_mean_mean = np.mean(magF_mean)
 magF_std_std = np.std(magF_mean)
@@ -125,4 +139,7 @@ mF_m.errorbar()
 
 mM_c = Monitor([z*1e3], [magM_calc_mean*1e3, magM_calc_std*1e3], "MTQ Magnetic Moment means", "m[mAm2]", "distance[mm]", marker = "o-", sig_name = ["m_mean"])
 mM_c.errorbar()
-mM_c.show()
+
+mM2_c = Monitor([z*1e3], [magM_calc_mean2*1e3, magM_calc_std2*1e3], "MTQ Magnetic Moment means", "m[mAm2]", "distance[mm]", marker = "o-", sig_name = ["m_mean"])
+mM2_c.errorbar()
+mM2_c.show()
