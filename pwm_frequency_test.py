@@ -164,27 +164,3 @@ v_mon.show()
 
 
 
-
-
-
-#freq[11], freq[12], freq[13], freq[14], freq[15], freq[16], freq[17], freq[18], freq[19], freq[20],\
-#freq[21], freq[22], freq[23], freq[24], freq[25], freq[26], freq[27], freq[28], freq[29], freq[30],\
-#freq[31], freq[32], freq[33], freq[34], freq[35], freq[36], freq[37], freq[38], freq[39], freq[40],\
-#freq[41], freq[42], freq[43], freq[44], freq[45], freq[46], freq[47], freq[48], freq[49], freq[50],\
-#freq[51], freq[52], freq[53], freq[54], freq[55], freq[56], freq[57], freq[58], freq[59], freq[60],\
-#freq[61], freq[62], freq[63], freq[64], freq[65], freq[66], freq[67], freq[68], freq[69], freq[70],\
-#freq[71], freq[72], freq[73], freq[74], freq[75], freq[76], freq[77], freq[78], freq[79], freq[80],\
-#freq[81], freq[82], freq[83], freq[84], freq[85], freq[86], freq[87], freq[88], freq[89], freq[90],\
-#freq[91], freq[92], freq[93], freq[94], freq[95], freq[96], freq[97], freq[98], freq[99]],\
-#"F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18", "F19", "F20",\
-#"F21", "F22", "F23", "F24", "F25", "F16", "F27", "F28", "F29", "F30",\
-#"F31", "F32", "F33", "F34", "F35", "F36", "F37", "F38", "F39", "F40",\
-#"F41", "F42", "F43", "F44", "F45", "F46", "F47", "F48", "F49", "F50",\
-#"F51", "F52", "F53", "F54", "F55", "F56", "F57", "F58", "F59", "F60",\
-#"F61", "F62", "F63", "F64", "F65", "F66", "F67", "F68", "F69", "F70",\
-#"F71", "F72", "F73", "F74", "F75", "F76", "F77", "F78", "F79", "F80",\
-#"F81", "F82", "F83", "F84", "F85", "F86", "F87", "F88", "F89", "F90",\
-#"F91", "F92", "F93", "F94", "F95", "F96", "F97", "F98", "F99"])
-
-
-
