@@ -105,7 +105,7 @@ import datetime
 
 # Data Visualization
 from monitor import Monitor
-v_mon= Monitor([t, t, t, t], [voltage[0], voltage[30], voltage[60], voltage[99]],"MTQ input freq", "F[f]","time[s]", sig_name = ["V0", "V1", "V2", "V3"])
+v_mon= Monitor([t, t, t, t], [voltage[0], voltage[30], voltage[60], voltage[99]],"MTQ input freq", "V[V]","time[s]", sig_name = ["V0", "V1", "V2", "V3"])
 v_mon.plot()
 
 i_mon = Monitor([t, t, t, t], [i_data[0], i_data[30], i_data[60], i_data[99]], "MTQ electric current", "i[A]", "time[s]", sig_name = ["i0", "i1", "i2", "i3"])
