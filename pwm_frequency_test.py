@@ -122,34 +122,45 @@ m_mon.plot()
 
 vrms_mon = Monitor([freq], [v_rms], "MTQ input rms voltage", "V[Vrms]", "freq[Hz]", sig_name = ["Vrms"])
 vrms_mon.plot()
+vrms_mon.ylim([0,3.3])
+
 
 vmed_mon = Monitor([freq], [v_med], "MTQ input med voltage", "V[Vmed]", "freq[Hz]", sig_name = ["Vmed"])
 vmed_mon.plot()
+vmed_mon.ylim([0,3.3])
 
 irms_mon = Monitor([freq], [i_rms], "MTQ input rms current", "i[irms]", "freq[Hz]", sig_name = ["irms"])
 irms_mon.plot()
+irms_mon.ylim([0,0.1])
 
 Brms_mon = Monitor([freq], [B_rms], "MTQ magnetic field rms", "B[Brms]", "freq[Hz]", sig_name = ["Brms"])
-Brms_mon.plot() 
+Brms_mon.plot()
+Brms_mon.ylim([0,70])
 
 mCalcrms_mon = Monitor([freq], [m_calc_rms], "MTQ calc magnetic moment rms", "mCalc[mrms]", "time[s]", sig_name = ["mrms"])
 mCalcrms_mon.plot()
+mCalcrms_mon.ylim([0,0.1])
 
 mrms_mon = Monitor([freq], [m_rms], "MTQ magnetic moment rms", "m[mrms]", "time[s]", sig_name = ["mrms"])
 mrms_mon.plot()
+mrms_mon.ylim([0,0.1])
 
 imed_mon = Monitor([freq], [i_med], "MTQ input med current", "i[imed]", "time[s]", sig_name = ["imed"])
 imed_mon.plot()
+imed_mon.ylim([0,0.2])
 
 Bmed_mon = Monitor([freq], [B_med], "MTQ magnetic field med", "B[Bmed]", "time[s]", sig_name = ["Bmed"])
 Bmed_mon.plot()
+Bmed_mon.ylim([0,40])
 
 mCalcmed_mon = Monitor([freq], [m_calc_med], "MTQ calc magnetic moment med", "mCalc[mmed]", "time[s]", sig_name = ["mmed"])
 mCalcmed_mon.plot()
+mCalcmed_mon.ylim([0,0.2])
 
 mmed_mon = Monitor([freq], [m_med], "MTQ magnetic moment med", "m[mmed]", "time[s]", sig_name = ["mmed"])
 mmed_mon.plot()
-v_mon.show()
+mmed_mon.ylim([0,0.2])
+vrms_mon.show()
 
 
 
