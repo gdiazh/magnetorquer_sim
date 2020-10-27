@@ -66,6 +66,12 @@ class Monitor(object):
     def show(self):
         plt.show()
 
+    def ylim(self, limit):
+        plt.ylim((limit[0],limit[1]))
+
+    def xlim(self, limit):
+        plt.xlim((limit[0],limit[1]))
+
 if __name__ == '__main__':
     # TEST
     import numpy as np
