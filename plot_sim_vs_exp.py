@@ -5,12 +5,15 @@ from pathlib import Path
 from monitor import Monitor
 
 # read data
-path = "data/magnetometer/"
-test_exp = "2020-05-25 13-06-49/"
-test_sim = "2020-05-27 18-43-10/"
+# path = "data/magnetometer/"
+# test_exp = "2020-05-25 13-06-49/"
+# test_sim = "2020-05-27 18-43-10/"
+path = "data/gst-600/"
+test_exp = "2020-10-05 16-04-53[x]/fmt/"
+test_sim = "magnetic/sim/2020-10-26 20-04-20/"
 
-file_exp = Path(path+test_exp+"results[B-m-mean-std][16-35mm].csv")
-file_sim = Path(path+test_sim+"results[B-m-mean-std][16-35mm].csv")
+file_exp = Path(path+test_exp+"results[B-m-mean-std][0-40mm].csv")
+file_sim = Path(path+test_sim+"results[B-m-mean-std][0-40mm].csv")
 
 data_exp = pandas.read_csv(file_exp)
 data_sim = pandas.read_csv(file_sim)
@@ -73,7 +76,7 @@ n4 = np.sum((fz_sim - np.mean(fz_sim)) * (B_mean_sim - np.mean(B_mean_sim)))
 d4 = np.sum((fz_sim - np.mean(fz_sim))**2)
 m4 = n4 / d4
 b4 = np.mean(B_mean_sim) - m4 * np.mean(fz_sim)
-print("Experiment Coefficients:")
+print("Simulation Coefficients:")
 print("m4 = ", m4, "b = ", b4)
 M_est4 = np.abs(m4) * 5 * 1e-9
 print("M estimated from Simulation LSR: ", M_est4*1e3, "[mAm2]")
